@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Button from '../components/Button';
 import useAuth from '../hooks/useAuth';
 import useLoginForm from '../hooks/useLoginForm';
 
@@ -19,6 +20,7 @@ const LoginPage = () => {
       <label htmlFor="password">Senha</label>
       <input type="password" id="password" name="password" value={values.password} onChange={handleChange} />
       <button type="submit">Entrar</button>
+      <Button />
     </form>
   );
 }

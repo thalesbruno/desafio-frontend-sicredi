@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// import PrivateRoute from './components/hoc/PrivateRoute';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './components/styles/GlobalStyle';
+import { themeDark, themeLight } from './components/styles/Theme';
 import { UserContext } from './contexts/UserContext';
 import useCheckLogin from './hooks/useCheckLogin';
 import HomePage from './pages/Home';
@@ -7,19 +10,23 @@ import LoginPage from './pages/Login';
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useCheckLogin();
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <Switch>
-        <Route exact path="/">
-          {isLoggedIn ? <Redirect to={'/home'} /> : <Redirect to={'/login'} />}
-        </Route>
-        <Route path="/home">
-          {isLoggedIn ? <HomePage /> : <Redirect to={'/login'} />}
-        </Route>
-        <Route path="/login" component={LoginPage} />
-      </Switch>
-    </UserContext.Provider>
+    <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
+      <GlobalStyle />
+      <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <Switch>
+          <Route exact path="/">
+            {isLoggedIn ? <Redirect to={'/home'} /> : <Redirect to={'/login'} />}
+          </Route>
+          <Route path="/home">
+            {isLoggedIn ? <HomePage /> : <Redirect to={'/login'} />}
+          </Route>
+          <Route path="/login" component={LoginPage} />
+        </Switch>
+      </UserContext.Provider>
+    </ThemeProvider>
   );
 }
 
