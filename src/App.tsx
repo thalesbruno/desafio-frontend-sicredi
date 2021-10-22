@@ -1,6 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
-import PrivateRoute from './components/hoc/PrivateRoute';
+// import PrivateRoute from './components/hoc/PrivateRoute';
 import { UserContext } from './contexts/UserContext';
 import useCheckLogin from './hooks/useCheckLogin';
 import HomePage from './pages/Home';
@@ -15,7 +14,9 @@ function App() {
         <Route exact path="/">
           {isLoggedIn ? <Redirect to={'/home'} /> : <Redirect to={'/login'} />}
         </Route>
-        <PrivateRoute path="/home" component={HomePage} />
+        <Route path="/home">
+          {isLoggedIn ? <HomePage /> : <Redirect to={'/login'} />}
+        </Route>
         <Route path="/login" component={LoginPage} />
       </Switch>
     </UserContext.Provider>
