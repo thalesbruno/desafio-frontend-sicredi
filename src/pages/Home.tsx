@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { FunctionComponent } from 'react';
+import useAuth from '../hooks/useAuth';
 
-interface HomePageProps {
-
-}
-
-const HomePage: FunctionComponent<HomePageProps> = () => {
-    return (
-        <div>home</div>
-    );
+const HomePage = () => {
+  const { logoutUser } = useAuth();
+  return (
+    <button onClick={logoutUser}>Sair</button>
+  );
 }
 
 export default HomePage;
