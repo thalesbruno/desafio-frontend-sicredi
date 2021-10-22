@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from './components/hoc/PrivateRoute';
+import { UserContext } from './contexts/UserContext';
+import useCheckLogin from './hooks/useCheckLogin';
+import HomePage from './pages/Home';
+import LoginPage from './pages/Login';
 
 function App() {
+  const { isLoggedIn, setIsLoggedIn } = useCheckLogin();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <Switch>
+        <Route exact path="/">
+          {isLoggedIn ? <Redirect to={'/home'} /> : <Redirect to={'/login'} />}
+        </Route>
+        <PrivateRoute path="/home" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+      </Switch>
+    </UserContext.Provider>
   );
 }
 
