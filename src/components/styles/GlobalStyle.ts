@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components"
-import { normalize } from 'styled-normalize';
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -15,10 +15,5 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.palette.background.default};
   }
 
-  html, body {
-      display: flex;
-      min-height: 100vh;
-      width: 100%;
-  }
-`
+`;
 export default GlobalStyle;

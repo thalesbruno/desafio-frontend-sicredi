@@ -1,11 +1,9 @@
-import * as React from 'react';
-import useAuth from '../hooks/useAuth';
+import * as React from "react";
+import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
+import Typography from "../components/Typography";
 
-const HomePage = () => {
-  const { logoutUser } = useAuth();
-  return (
-    <button onClick={logoutUser}>Sair</button>
-  );
+function HomePage() {
+  return <Typography>Home</Typography>;
 }
 
-export default HomePage;
+export default PageWrapperHOC(HomePage);
