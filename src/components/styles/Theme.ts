@@ -10,50 +10,50 @@ const breakpoints = {
 
 const typography = {
   fontFamily: "'Rubik', sans-serif",
-}
+};
 
 export const themeDark: DefaultTheme = {
   palette: {
     primary: {
-      main: '#13A10E',
+      main: "#13A10E",
     },
     secondary: {
-      main: '#19857b',
+      main: "#19857b",
     },
     error: {
       main: "red",
     },
     background: {
-      default: '#000',
+      default: "#000",
     },
     text: {
-      primary: '#ccc',
-      secondary: '#111',
+      primary: "#ccc",
+      secondary: "#111",
     },
   },
   typography: typography,
   breakpoints,
-}
+};
 
 export const themeLight: DefaultTheme = {
   palette: {
     primary: {
-      main: '#5E2750',
+      main: "#1976d2",
     },
     secondary: {
-      main: '#19857b',
+      main: "#9c27b0",
     },
     error: {
-      main: "red",
+      main: "#d32f2f",
     },
     background: {
-      default: '#EEEDEB',
+      default: "#eee",
     },
     text: {
-      primary: '#111',
-      secondary: '#ccc',
+      primary: "#111",
+      secondary: "#777",
     },
   },
   typography: typography,
   breakpoints,
-}
+};
