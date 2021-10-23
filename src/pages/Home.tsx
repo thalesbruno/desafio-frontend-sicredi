@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import DragonList from "../components/DragonList";
-import useGetDragons from "../hooks/useGetDragons";
+import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
+import styled from "styled-components";
+
+const HomePageWrapper = styled.div`
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 
 const compareAZ = (a: Dragon, b: Dragon) => {
   if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
@@ -11,7 +19,7 @@ const compareAZ = (a: Dragon, b: Dragon) => {
 };
 
 function HomePage() {
-  const { getAllDragons } = useGetDragons();
+  const { getAllDragons } = useDragons();
   const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
 
   useEffect(() => {
@@ -23,9 +31,9 @@ function HomePage() {
   useEffect(() => {}, [dragonData]);
 
   return (
-    <div>
+    <HomePageWrapper>
       <DragonList dragons={dragonData} />
-    </div>
+    </HomePageWrapper>
   );
 }
 

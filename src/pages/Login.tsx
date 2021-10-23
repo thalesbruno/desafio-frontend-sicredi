@@ -1,6 +1,7 @@
 import * as React from "react";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
+import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import useAuth from "../hooks/useAuth";
 import useLoginForm from "../hooks/useLoginForm";
 
@@ -16,31 +17,35 @@ const LoginPage = () => {
 
   return (
     <form onSubmit={handleLogin}>
-      <label htmlFor="username">Usuário</label>
-      <Input
-        fullWidth
-        placeholder="Digite seu usuário"
-        type="text"
-        id="username"
-        name="username"
-        value={values.username}
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Senha</label>
-      <Input
-        fullWidth
-        placeholder="Digite sua senha"
-        type="password"
-        id="password"
-        name="password"
-        value={values.password}
-        onChange={handleChange}
-      />
-      <Button fullWidth type="submit">
+      <label>
+        Usuário
+        <Input
+          fullWidth
+          placeholder="Digite seu usuário"
+          type="text"
+          id="username"
+          name="username"
+          value={values.username}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Senha
+        <Input
+          fullWidth
+          placeholder="Digite sua senha"
+          type="password"
+          id="password"
+          name="password"
+          value={values.password}
+          onChange={handleChange}
+        />
+      </label>
+      <Button marginTop="10px" fullWidth type="submit">
         Entrar
       </Button>
     </form>
   );
 };
 
-export default LoginPage;
+export default PageWrapperHOC(LoginPage);

@@ -4,7 +4,8 @@ import styled from "styled-components";
 interface Props {}
 
 const PageDefault = styled.div`
-  max-width: 768;
+  max-width: 768px;
+  margin: 40px auto;
 `;
 
 export default function PageWrapperHOC(PageComponent: React.FC<Props>) {
