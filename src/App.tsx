@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import GlobalStyle from "./components/styles/GlobalStyle";
 import { themeDark, themeLight } from "./components/styles/Theme";
@@ -17,7 +18,7 @@ function App() {
     <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
       <GlobalStyle />
       <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        {isLoggedIn && <Header />}
+        {isLoggedIn && <Header dark={isDarkTheme} setDark={setIsDarkTheme} />}
         <Switch>
           <Route exact path="/">
             {isLoggedIn ? (
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path="/login" component={LoginPage} />
         </Switch>
+        <Footer />
       </UserContext.Provider>
     </ThemeProvider>
   );
