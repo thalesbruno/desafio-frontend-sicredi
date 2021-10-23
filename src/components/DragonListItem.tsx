@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import compareAZ from "../helpers/compareAZ";
+import printDate from "../helpers/printDate";
 import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import Button from "./common/Button";
@@ -14,6 +16,7 @@ const DragonListItemWrapper = styled.div`
   border: 2px solid ${({ theme }) => theme.palette.primary.main};
   margin: 15px 0;
   padding: 10px;
+  width: 220px;
 `;
 
 export default function DragonListItem({ dragon, setDragons }: Props) {
@@ -32,9 +35,10 @@ export default function DragonListItem({ dragon, setDragons }: Props) {
 
   return (
     <DragonListItemWrapper>
+      <Link to={`/dragao/${dragon.id}`}>Expandir</Link>
       <p>Nome: {dragon.name}</p>
       <p>Tipo: {dragon.type}</p>
-      <p>Criado em: {dragon.createdAt}</p>
+      <p>Criado em: {printDate(dragon.createdAt)}</p>
       <Button>Editar</Button>
       <Button onClick={handleRemove}>Remover</Button>
     </DragonListItemWrapper>

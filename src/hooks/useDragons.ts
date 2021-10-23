@@ -8,12 +8,19 @@ const httpClient = axios.create({
 
 export default function useDragons() {
   const getAllDragons = async () => await httpClient.get<Array<Dragon>>("/");
+
   const deleteDragon = async (id: string) => await httpClient.delete(`/${id}`);
+
+  const getDragonById = async (id: string) =>
+    await httpClient.get<Dragon>(`/${id}`);
+
+  const createDragon = async (dragon: { name: string; type: string }) =>
+    await httpClient.post<Dragon>("/", dragon);
 
   return {
     getAllDragons,
-    // getDragonById,
-    // createDragon,
+    getDragonById,
+    createDragon,
     // updateDragon,
     deleteDragon,
   };

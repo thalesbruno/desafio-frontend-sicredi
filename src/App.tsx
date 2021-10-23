@@ -9,6 +9,8 @@ import { UserContext } from "./contexts/UserContext";
 import useCheckLogin from "./hooks/useCheckLogin";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
+import DragonPage from "./pages/Dragon";
+import AddDragon from "./pages/AddDragon";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useCheckLogin();
@@ -30,6 +32,12 @@ function App() {
           </Route>
           <Route path="/home">
             {isLoggedIn ? <HomePage /> : <Redirect to={"/login"} />}
+          </Route>
+          <Route path="/dragao/:id">
+            {isLoggedIn ? <DragonPage /> : <Redirect to={"/login"} />}
+          </Route>
+          <Route path="/adicionar-dragao">
+            {isLoggedIn ? <AddDragon /> : <Redirect to={"/login"} />}
           </Route>
           <Route path="/login" component={LoginPage} />
         </Switch>

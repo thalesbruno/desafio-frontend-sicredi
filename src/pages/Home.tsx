@@ -5,6 +5,7 @@ import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import styled from "styled-components";
 import compareAZ from "../helpers/compareAZ";
+import { Link } from "react-router-dom";
 
 const HomePageWrapper = styled.div`
   min-height: 75vh;
@@ -28,6 +29,7 @@ function HomePage() {
 
   return (
     <HomePageWrapper>
+      <Link to="/adicionar-dragao">Adicionar dragão</Link>
       <DragonList dragons={dragonData} setDragons={setDragonData} />
     </HomePageWrapper>
   );

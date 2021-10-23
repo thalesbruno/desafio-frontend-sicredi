@@ -1,5 +1,5 @@
 export interface Dragon {
-  createdAt: string;
+  createdAt: Date;
   name: string;
   type: string;
   histories?: Array<any>;
