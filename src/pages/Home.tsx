@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import DragonList from "../components/DragonList";
 import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import styled from "styled-components";
+import { DataUpdateContext } from "../contexts/DataUpdateContext";
 
 const HomePageWrapper = styled.div`
   min-height: 75vh;
@@ -20,13 +21,16 @@ const compareAZ = (a: Dragon, b: Dragon) => {
 
 function HomePage() {
   const { getAllDragons } = useDragons();
+  const { updated } = useContext(DataUpdateContext);
+
   const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
 
   useEffect(() => {
     getAllDragons().then(({ data }) =>
       setDragonData(([] as Array<Dragon>).concat(data.sort(compareAZ)))
     );
-  }, []);
+    console.log(`dados atualizados: ${updated}`);
+  }, [updated]);
 
   useEffect(() => {}, [dragonData]);
 

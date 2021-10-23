@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { DataUpdateContext } from "../contexts/DataUpdateContext";
+import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import Button from "./common/Button";
 
@@ -14,13 +16,15 @@ const DragonListItemWrapper = styled.div`
 `;
 
 export default function DragonListItem({ dragon }: Props) {
+  const { setUpdated } = useContext(DataUpdateContext);
+
   return (
     <DragonListItemWrapper>
       <p>Nome: {dragon.name}</p>
       <p>Tipo: {dragon.type}</p>
       <p>Criado em: {dragon.createdAt}</p>
       <Button>Editar</Button>
-      <Button>Remover</Button>
+      <Button onClick={() => setUpdated(new Date())}>Remover</Button>
     </DragonListItemWrapper>
   );
 }
