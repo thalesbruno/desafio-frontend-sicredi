@@ -1,12 +1,13 @@
 import * as React from "react";
 import styled from "styled-components";
 import useAuth from "../hooks/useAuth";
-import Button from "./Button";
-import NavLink from "./NavLink";
+import Button from "./common/Button";
+import NavLink from "./common/NavLink";
 
 const HeaderWrapper = styled.nav`
   min-height: 50px;
   background-color: ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.contrastText};
   width: 100%;
   display: flex;
   justify-content: space-between;
