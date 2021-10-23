@@ -4,7 +4,7 @@ import DragonList from "../components/DragonList";
 import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import styled from "styled-components";
-import { DataUpdateContext } from "../contexts/DataUpdateContext";
+import compareAZ from "../helpers/compareAZ";
 
 const HomePageWrapper = styled.div`
   min-height: 75vh;
@@ -13,15 +13,8 @@ const HomePageWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-const compareAZ = (a: Dragon, b: Dragon) => {
-  if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-  if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-  return 0;
-};
-
 function HomePage() {
   const { getAllDragons } = useDragons();
-  const { updated } = useContext(DataUpdateContext);
 
   const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
 
@@ -29,14 +22,13 @@ function HomePage() {
     getAllDragons().then(({ data }) =>
       setDragonData(([] as Array<Dragon>).concat(data.sort(compareAZ)))
     );
-    console.log(`dados atualizados: ${updated}`);
-  }, [updated]);
+  }, []);
 
   useEffect(() => {}, [dragonData]);
 
   return (
     <HomePageWrapper>
-      <DragonList dragons={dragonData} />
+      <DragonList dragons={dragonData} setDragons={setDragonData} />
     </HomePageWrapper>
   );
 }
