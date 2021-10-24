@@ -17,11 +17,16 @@ export default function useDragons() {
   const createDragon = async (dragon: { name: string; type: string }) =>
     await httpClient.post<Dragon>("/", dragon);
 
+  const updateDragon = async (
+    id: string,
+    dragon: { name: string; type: string }
+  ) => await httpClient.put<Dragon>(`/${id}`, dragon);
+
   return {
     getAllDragons,
     getDragonById,
     createDragon,
-    // updateDragon,
+    updateDragon,
     deleteDragon,
   };
 }

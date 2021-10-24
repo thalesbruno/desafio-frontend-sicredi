@@ -11,11 +11,13 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import DragonPage from "./pages/Dragon";
 import AddDragon from "./pages/AddDragon";
+import EditDragon from "./pages/EditDragon";
+import { Dragon } from "./model/Dragon";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useCheckLogin();
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
-  const [updated, setUpdated] = useState<Date>(new Date());
+  const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
 
   return (
     <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
@@ -31,13 +33,24 @@ function App() {
             )}
           </Route>
           <Route path="/home">
-            {isLoggedIn ? <HomePage /> : <Redirect to={"/login"} />}
+            {isLoggedIn ? (
+              <HomePage dragonData={dragonData} setDragonData={setDragonData} />
+            ) : (
+              <Redirect to={"/login"} />
+            )}
           </Route>
           <Route path="/dragao/:id">
             {isLoggedIn ? <DragonPage /> : <Redirect to={"/login"} />}
           </Route>
           <Route path="/adicionar-dragao">
             {isLoggedIn ? <AddDragon /> : <Redirect to={"/login"} />}
+          </Route>
+          <Route path="/editar-dragao/:id">
+            {isLoggedIn ? (
+              <EditDragon dragonData={dragonData} />
+            ) : (
+              <Redirect to={"/login"} />
+            )}
           </Route>
           <Route path="/login" component={LoginPage} />
         </Switch>

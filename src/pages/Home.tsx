@@ -1,11 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
+import React, { useEffect, useState } from "react";
 import DragonList from "../components/DragonList";
 import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import styled from "styled-components";
 import compareAZ from "../helpers/compareAZ";
 import { Link } from "react-router-dom";
+
+interface Props {
+  dragonData: Array<Dragon> | [];
+  setDragonData: React.Dispatch<React.SetStateAction<Dragon[] | []>>;
+}
 
 const HomePageWrapper = styled.div`
   min-height: 75vh;
@@ -14,10 +18,10 @@ const HomePageWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-function HomePage() {
+export default function HomePage({ dragonData, setDragonData }: Props) {
   const { getAllDragons } = useDragons();
 
-  const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
+  // const [dragonData, setDragonData] = useState<Array<Dragon> | []>([]);
 
   useEffect(() => {
     getAllDragons().then(({ data }) =>
@@ -34,5 +38,3 @@ function HomePage() {
     </HomePageWrapper>
   );
 }
-
-export default PageWrapperHOC(HomePage);

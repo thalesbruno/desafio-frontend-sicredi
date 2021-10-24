@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
 import styled from "styled-components";
-import { UserContext } from "../contexts/UserContext";
 import useAuth from "../hooks/useAuth";
 import Button from "./common/Button";
 import NavLink from "./common/NavLink";
@@ -25,7 +23,6 @@ const RightSide = styled.div``;
 
 export default function Header({ dark, setDark }: Props) {
   const { logoutUser } = useAuth();
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   return (
     <HeaderWrapper>

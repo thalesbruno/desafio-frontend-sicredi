@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import printDate from "../helpers/printDate";
 import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 
-function DragonPage() {
+export default function DragonPage() {
   const { id }: { id: string } = useParams();
   const { getDragonById } = useDragons();
   const [dragon, setDragon] = useState<Dragon | any>({});
@@ -28,5 +27,3 @@ function DragonPage() {
     </div>
   );
 }
-
-export default PageWrapperHOC(DragonPage);

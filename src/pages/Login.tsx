@@ -1,7 +1,6 @@
 import * as React from "react";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
-import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import useAuth from "../hooks/useAuth";
 import useLoginForm from "../hooks/useForm";
 
@@ -10,7 +9,7 @@ interface LoginData {
   password: string;
 }
 
-const LoginPage = () => {
+export default function LoginPage() {
   const { loginUser } = useAuth();
 
   const { values, handleChange } = useLoginForm<LoginData>({
@@ -52,6 +51,4 @@ const LoginPage = () => {
       </Button>
     </form>
   );
-};
-
-export default PageWrapperHOC(LoginPage);
+}

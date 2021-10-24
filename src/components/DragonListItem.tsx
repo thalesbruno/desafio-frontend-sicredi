@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import compareAZ from "../helpers/compareAZ";
 import printDate from "../helpers/printDate";
@@ -33,13 +33,19 @@ export default function DragonListItem({ dragon, setDragons }: Props) {
     }
   };
 
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/editar-dragao/${dragon.id}`);
+  };
+
   return (
     <DragonListItemWrapper>
       <Link to={`/dragao/${dragon.id}`}>Expandir</Link>
       <p>Nome: {dragon.name}</p>
       <p>Tipo: {dragon.type}</p>
       <p>Criado em: {printDate(dragon.createdAt)}</p>
-      <Button>Editar</Button>
+      <Button onClick={handleEdit}>Editar</Button>
       <Button onClick={handleRemove}>Remover</Button>
     </DragonListItemWrapper>
   );

@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import useDragons from "../hooks/useDragons";
 import useForm from "../hooks/useForm";
+import { Dragon } from "../model/Dragon";
 
 interface DragonFormData {
   name: string;
   type: string;
 }
 
-export default function AddDragon() {
+function EditDragon({ dragonData }: { dragonData: Array<Dragon> }) {
+  const { id }: { id: string } = useParams();
+
+  const dragonToEdit = dragonData.find((dragon) => dragon.id === id);
+
+  const [dragon, setDragon] = useState<Dragon | any>({});
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const { getDragonById, updateDragon } = useDragons();
+
+  useEffect(() => {
+    getDragonById(id).then(({ data }) => {
+      setDragon(data);
+      setLoading(false);
+    });
+  }, []);
+
   const { values, handleChange } = useForm<DragonFormData>({
-    name: "",
-    type: "",
+    name: dragonToEdit?.name || "",
+    type: dragonToEdit?.type || "",
   });
-  const { createDragon } = useDragons();
 
   const handleCreateDragon = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newDragon: DragonFormData = { name: values.name, type: values.type };
-    createDragon(newDragon);
+    updateDragon(id, newDragon);
   };
 
-  return (
+  return loading ? (
+    <div>carregando...</div>
+  ) : (
     <form onSubmit={handleCreateDragon}>
       <label>
         Nome
@@ -52,3 +71,5 @@ export default function AddDragon() {
     </form>
   );
 }
+
+export default EditDragon;
