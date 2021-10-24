@@ -1,14 +1,21 @@
 import * as React from "react";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
-import PageWrapperHOC from "../components/hoc/PageWrapperHOC";
 import useAuth from "../hooks/useAuth";
-import useLoginForm from "../hooks/useLoginForm";
+import useLoginForm from "../hooks/useForm";
 
-const LoginPage = () => {
+interface LoginData {
+  username: string;
+  password: string;
+}
+
+export default function LoginPage() {
   const { loginUser } = useAuth();
 
-  const { values, handleChange } = useLoginForm({ username: "", password: "" });
+  const { values, handleChange } = useLoginForm<LoginData>({
+    username: "",
+    password: "",
+  });
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,9 +28,8 @@ const LoginPage = () => {
         Usuário
         <Input
           fullWidth
-          placeholder="Digite seu usuário"
+          placeholder="Usuário de exemplo: usuario"
           type="text"
-          id="username"
           name="username"
           value={values.username}
           onChange={handleChange}
@@ -33,9 +39,8 @@ const LoginPage = () => {
         Senha
         <Input
           fullWidth
-          placeholder="Digite sua senha"
+          placeholder="Senha de exemplo: senhaforte"
           type="password"
-          id="password"
           name="password"
           value={values.password}
           onChange={handleChange}
@@ -46,6 +51,4 @@ const LoginPage = () => {
       </Button>
     </form>
   );
-};
-
-export default PageWrapperHOC(LoginPage);
+}

@@ -36,6 +36,7 @@ const ButtonWrapper = styled.button<StyleProps>`
     css`
       width: 100%;
     `}
+  cursor: pointer;
 `;
 
 export default function Button({ children, ...props }: Props) {
