@@ -29,6 +29,7 @@ declare module "styled-components" {
       };
       background: {
         default: string;
+        auxiliary: string;
       };
       text: {
         primary: string;
@@ -38,13 +39,6 @@ declare module "styled-components" {
     };
     typography: {
       fontFamily: string;
-    };
-    breakpoints: {
-      xs: number;
-      sm: number;
-      md: number;
-      lg: number;
-      xl: number;
     };
   }
 }

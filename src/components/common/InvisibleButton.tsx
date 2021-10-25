@@ -5,10 +5,7 @@ import { get } from "lodash";
 interface Props {
   children: React.ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
-  disabled?: boolean;
   onClick?: () => void;
-  variant?: string;
-  fullWidth?: boolean;
   marginTop?: string;
   marginBottom?: string;
   marginLeft?: string;
@@ -16,30 +13,17 @@ interface Props {
 }
 
 interface StyleProps {
-  variant?: string;
-  fullWidth?: boolean;
   marginTop?: string;
   marginBottom?: string;
   marginLeft?: string;
   marginRight?: string;
 }
 
-const ButtonWrapper = styled.button<StyleProps>`
+const InvisibleButtonWrapper = styled.button<StyleProps>`
   cursor: pointer;
-  border-radius: 4px;
-  &:hover {
-    opacity: 0.8;
-  }
-  padding: 10px;
-  background-color: ${({ theme, variant }) =>
-    get(theme, `palette.${variant}.main`)};
-  color: ${({ theme, variant }) =>
-    get(theme, `palette.${variant}.contrastText`)};
-  ${({ fullWidth }) =>
-    fullWidth &&
-    css`
-      width: 100%;
-    `}
+  border: none;
+  padding: 5px;
+  background-color: transparent;
 
   // custom
   margin-top: ${({ marginTop }) => (marginTop ? marginTop : 0)};
@@ -48,6 +32,6 @@ const ButtonWrapper = styled.button<StyleProps>`
   margin-right: ${({ marginRight }) => (marginRight ? marginRight : 0)};
 `;
 
-export default function Button({ children, ...props }: Props) {
-  return <ButtonWrapper {...props}>{children}</ButtonWrapper>;
+export default function InvisibleButton({ children, ...props }: Props) {
+  return <InvisibleButtonWrapper {...props}>{children}</InvisibleButtonWrapper>;
 }
