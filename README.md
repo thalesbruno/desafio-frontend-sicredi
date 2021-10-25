@@ -28,7 +28,7 @@ A aplicação estará acessível através do navegador no endereçp `http://loca
 
 ### Acesso
 
-Na tela de login, entrar com as credenciais cridas para este desafio:
+Na tela de login, entrar com as credenciais criadas para este desafio:
 
 | Usuário | Senha      |
 | ------- | ---------- |
