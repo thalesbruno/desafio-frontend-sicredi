@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { UserContext } from "./contexts/UserContext";
+import GlobalStyle from "./style/GlobalStyle";
+import { themeDark, themeLight } from "./style/Theme";
+import { Dragon } from "./model/Dragon";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import GlobalStyle from "./components/styles/GlobalStyle";
-import { themeDark, themeLight } from "./components/styles/Theme";
-import { UserContext } from "./contexts/UserContext";
 import useCheckLogin from "./hooks/useCheckLogin";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import DragonPage from "./pages/Dragon";
 import AddDragon from "./pages/AddDragon";
 import EditDragon from "./pages/EditDragon";
-import { Dragon } from "./model/Dragon";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useCheckLogin();

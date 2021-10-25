@@ -1,8 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
 import useAuth from "../hooks/useAuth";
-import Button from "./common/Button";
+import InvisibleButton from "./common/InvisibleButton";
 import NavLink from "./common/NavLink";
+import DragonIcon from "./icons/DragonIcon";
+import Logout from "./icons/Logout";
+import Moon from "./icons/Moon";
+import Sun from "./icons/Sun";
 
 interface Props {
   dark: boolean;
@@ -19,19 +23,25 @@ const HeaderWrapper = styled.nav`
   padding: 0 50px;
 `;
 
-const RightSide = styled.div``;
+const RightSide = styled.div`
+  display: flex;
+`;
 
 export default function Header({ dark, setDark }: Props) {
   const { logoutUser } = useAuth();
 
   return (
     <HeaderWrapper>
-      <NavLink to="/home">Desafio</NavLink>
+      <NavLink to="/home">
+        <DragonIcon />
+      </NavLink>
       <RightSide>
-        <Button onClick={logoutUser}>Sair</Button>
-        <Button onClick={() => setDark(!dark)}>
-          {dark ? "Switch to Light" : "Switch to Dark"}
-        </Button>
+        <InvisibleButton onClick={logoutUser}>
+          <Logout />
+        </InvisibleButton>
+        <InvisibleButton onClick={() => setDark(!dark)}>
+          {dark ? <Sun /> : <Moon />}
+        </InvisibleButton>
       </RightSide>
     </HeaderWrapper>
   );

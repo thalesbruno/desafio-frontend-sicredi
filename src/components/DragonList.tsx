@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import cssByMediaScreen from "../helpers/cssByMediaScreen";
 import { Dragon } from "../model/Dragon";
 import DragonListItem from "./DragonListItem";
 
@@ -10,8 +11,15 @@ interface Props {
 
 const DragonListWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  ${cssByMediaScreen({
+    xs: css`
+      justify-content: center;
+    `,
+    sm: css`
+      justify-content: space-evenly;
+    `,
+  })}
 `;
 
 export default function DragonList({ dragons, setDragons }: Props) {

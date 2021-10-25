@@ -5,6 +5,7 @@ import { get } from "lodash";
 interface Props {
   children: React.ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
+  disabled?: boolean;
   onClick?: () => void;
   variant?: string;
   fullWidth?: boolean;
@@ -24,19 +25,27 @@ interface StyleProps {
 }
 
 const ButtonWrapper = styled.button<StyleProps>`
-  margin-top: ${({ marginTop }) => (marginTop ? marginTop : 0)};
-  margin-bottom: ${({ marginBottom }) => (marginBottom ? marginBottom : 0)};
-  margin-left: ${({ marginLeft }) => (marginLeft ? marginLeft : 0)};
-  margin-right: ${({ marginRight }) => (marginRight ? marginRight : 0)};
-  background-color: ${({ theme, variant }) =>
-    get(theme, `palette.${variant}.primary`)};
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover {
+    opacity: 0.8;
+  }
   padding: 10px;
+  background-color: ${({ theme, variant }) =>
+    get(theme, `palette.${variant}.main`)};
+  color: ${({ theme, variant }) =>
+    get(theme, `palette.${variant}.contrastText`)};
   ${({ fullWidth }) =>
     fullWidth &&
     css`
       width: 100%;
     `}
-  cursor: pointer;
+
+  // custom
+  margin-top: ${({ marginTop }) => (marginTop ? marginTop : 0)};
+  margin-bottom: ${({ marginBottom }) => (marginBottom ? marginBottom : 0)};
+  margin-left: ${({ marginLeft }) => (marginLeft ? marginLeft : 0)};
+  margin-right: ${({ marginRight }) => (marginRight ? marginRight : 0)};
 `;
 
 export default function Button({ children, ...props }: Props) {

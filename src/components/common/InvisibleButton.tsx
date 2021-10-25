@@ -1,16 +1,10 @@
 import * as React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 interface Props {
-  fullWidth?: boolean;
-  type?: "text" | "password";
-  id?: string;
-  name?: string;
-  disabled?: boolean;
-  required?: boolean;
-  value: any;
-  onChange: React.ChangeEventHandler<any>;
-  placeholder?: string;
+  children: React.ReactNode;
+  type?: "button" | "submit" | "reset" | undefined;
+  onClick?: () => void;
   marginTop?: string;
   marginBottom?: string;
   marginLeft?: string;
@@ -18,26 +12,25 @@ interface Props {
 }
 
 interface StyleProps {
-  fullWidth?: boolean;
   marginTop?: string;
   marginBottom?: string;
   marginLeft?: string;
   marginRight?: string;
 }
 
-const InputWrapper = styled.input<StyleProps>`
-  padding: 10px;
-  ${({ fullWidth }) =>
-    fullWidth &&
-    css`
-      width: 100%;
-    `}
+const InvisibleButtonWrapper = styled.button<StyleProps>`
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+
+  // custom
   margin-top: ${({ marginTop }) => (marginTop ? marginTop : 0)};
   margin-bottom: ${({ marginBottom }) => (marginBottom ? marginBottom : 0)};
   margin-left: ${({ marginLeft }) => (marginLeft ? marginLeft : 0)};
   margin-right: ${({ marginRight }) => (marginRight ? marginRight : 0)};
 `;
 
-export default function Input(props: Props) {
-  return <InputWrapper {...props} />;
+export default function InvisibleButton({ children, ...props }: Props) {
+  return <InvisibleButtonWrapper {...props}>{children}</InvisibleButtonWrapper>;
 }

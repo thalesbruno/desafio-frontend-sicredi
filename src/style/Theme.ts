@@ -1,13 +1,5 @@
 import { DefaultTheme } from "styled-components";
 
-const breakpoints = {
-  xs: 0,
-  sm: 480,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-};
-
 const typography = {
   fontFamily: "'Rubik', sans-serif",
 };
@@ -39,16 +31,16 @@ export const themeDark: DefaultTheme = {
       contrastText: "rgba(0,0,0,0.87)",
     },
     background: {
-      default: "#121212",
+      default: "#212121",
+      auxiliary: "#424242",
     },
     text: {
-      primary: "#ccc",
+      primary: "#aaa",
       secondary: "#111",
       disabled: "rgba(255,255,255,0.5)",
     },
   },
   typography: typography,
-  breakpoints,
 };
 
 export const themeLight: DefaultTheme = {
@@ -78,7 +70,8 @@ export const themeLight: DefaultTheme = {
       contrastText: "#fff",
     },
     background: {
-      default: "#fff",
+      default: "#f5f5f5",
+      auxiliary: "#fff",
     },
     text: {
       primary: "#111",
@@ -87,5 +80,4 @@ export const themeLight: DefaultTheme = {
     },
   },
   typography: typography,
-  breakpoints,
 };
