@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import Alert from "../components/common/Alert";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import Typography from "../components/common/Typography";
@@ -30,14 +32,6 @@ const LoginPageWrapper = styled.div`
       padding: 14px 0;
       max-width: 500px;
     `,
-    // sm: css`
-    //   padding: 14px 0;
-    //   max-width: 80%;
-    // `,
-    // md: css`
-    //   padding: 20px 0;
-    //   max-width: 60%;
-    // `,
   })}
 `;
 
@@ -49,9 +43,14 @@ export default function LoginPage() {
     password: "",
   });
 
+  const [isUnauthorized, setIsUnauthorized] = useState(false);
+
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    loginUser(values);
+    setIsUnauthorized(false);
+    const responseStatus = loginUser(values);
+    if (responseStatus === 401) setIsUnauthorized(true);
+    if (responseStatus === 200) setIsUnauthorized(false);
   };
 
   return (
@@ -94,6 +93,15 @@ export default function LoginPage() {
           <Button variant="primary" marginTop="10px" fullWidth type="submit">
             Entrar
           </Button>
+          {isUnauthorized && (
+            <Alert
+              onClick={() => setIsUnauthorized(false)}
+              marginTop="5px"
+              type="error"
+            >
+              Erro ao efetuar o login
+            </Alert>
+          )}
         </form>
       </FormWrapper>
     </LoginPageWrapper>

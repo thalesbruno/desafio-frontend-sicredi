@@ -16,16 +16,14 @@ export default function useAuth() {
   const { setIsLoggedIn } = useContext(UserContext);
 
   const loginUser = (data: HTTPBody) => {
-    console.log(data);
     const response = fakePost("/auth/login", data);
     if (response.token) {
       const { token } = response;
       setCookie("jwt", token);
       setIsLoggedIn(true);
       history.push("/home");
-      return;
     }
-    return response.error;
+    return response.status;
   };
 
   const logoutUser = () => {
