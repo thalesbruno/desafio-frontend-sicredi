@@ -7,7 +7,6 @@ import useDragons from "../hooks/useDragons";
 import { Dragon } from "../model/Dragon";
 import compareAZ from "../helpers/compareAZ";
 import cssByMediaScreen from "../helpers/cssByMediaScreen";
-import Typography from "../components/common/Typography";
 import Button from "../components/common/Button";
 
 interface Props {

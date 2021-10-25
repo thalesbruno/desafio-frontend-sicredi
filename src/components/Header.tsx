@@ -1,10 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import useAuth from "../hooks/useAuth";
-import Button from "./common/Button";
 import InvisibleButton from "./common/InvisibleButton";
 import NavLink from "./common/NavLink";
-import Typography from "./common/Typography";
 import DragonIcon from "./icons/DragonIcon";
 import Logout from "./icons/Logout";
 import Moon from "./icons/Moon";

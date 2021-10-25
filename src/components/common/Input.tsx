@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
-import { get } from "lodash";
 
 interface Props {
   fullWidth?: boolean;

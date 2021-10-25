@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { Dragon } from "../model/Dragon";
 
 const httpClient = axios.create({
